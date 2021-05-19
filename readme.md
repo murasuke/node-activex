@@ -82,7 +82,7 @@ try {
 
 ### 実行と確認(javascript)
 
-  ADOでデータを登録、取得が出来ていることを確認
+  ADOでデータ登録、取得が出来ていることを確認
 
 ```bash
 > node mdb.js
@@ -93,7 +93,7 @@ Result field count: 4
 > Person: Romeo                          from Rom                            phone: 222-33-44            zip: 54323
 ```
 
-## 2：typescript(node)でADOを利用
+## 2：TypeScript(node)でADOを利用する
 
 typescriptと型定義をインストールしてから初期化(ts-config生成)
 ```
@@ -103,7 +103,7 @@ npm i @types/node @types/activex-adodb @types/activex-adox -D
 
 npx tsc -init
 ```
-  ts-nodeはコンパイルが面倒なので、楽をするためにインストールする
+  コンパイルが面倒なので、ts-nodeをインストールする(typescriptをコンパイルせずに実行できる)
 
 ### typescriptに書き直したソース(mdb.ts)
 
