@@ -1,4 +1,4 @@
-# node.jsからADO(AtvieX Data Object)を利用する
+# node.jsからADO(ActvieX Data Object)を利用する
 
 ## 目的
 
