@@ -1,8 +1,9 @@
 /**
- * node.jsでADOを利用してAccessのmdbファイルを利用するサンプル
+ * node(typescript)でADOを利用してAccessのmdbファイルを利用するサンプル
  */
-const fs = require('fs');
-const path = require('path'); 
+import fs from 'fs';
+import path from 'path';
+
 require('winax');  // npm i winax
 
 // MDBファイルを作成する
@@ -15,12 +16,13 @@ const data_path = path.join(__dirname, '/data/', filename);
 if (fs.existsSync(data_path)) {
   fs.unlinkSync(data_path);
 }
-
+ 
 // mdbファイルを作成するため「ADODB.Connection」ではなく「ADOX.Catalog」を利用する
 const constr = `Provider=Microsoft.ACE.OLEDB.12.0;Data Source=${data_path}`;
-const cat = new ActiveXObject('ADOX.Catalog');
+const cat: ADOX.Catalog = new ActiveXObject('ADOX.Catalog');
 cat.Create(constr);
-const con = cat.ActiveConnection;
+const con = cat.ActiveConnection as ADODB.Connection;
+
 try {
   // データ登録
   con.Execute('create Table persons (Name char(30), City char(30), Phone char(20), Zip decimal(5))');
@@ -29,23 +31,20 @@ try {
   con.Execute("insert into persons values('Romeo', 'Rom','222-33-44','54323')");
 
   // selectした結果を表示
-  const rs = con.Execute('Select * from persons'); 
-  const fields = rs.Fields;
-  console.log(`Result field count: ${fields.Count}`);
+  const rs: ADODB.Recordset = con.Execute('Select * from persons'); 
+  console.log(`Result field count: ${rs.Fields.Count}`);
 
   while (!rs.EOF) {
-      // Access as property by string key
-      const name = fields['Name'].Value;  
-      // Access as method with string argument
-      const town = fields('City').value;
-      // Access as indexed array
-      const phone = fields[2].value;
-      // Access recordset
-      const zip = rs[3].value;    
+    // 型指定の都合でrs.Fields['Name'] はコンパイルエラー
+    const name = rs.Fields('Name').Value;  
+    const town = rs.Fields('City').Value;
+    const phone = rs.Fields(2).Value;
+    const zip = rs.Fields(3).Value;    
 
-      console.log(`> Person: ${name} from ${town} phone: ${phone} zip: ${zip} `);
-      rs.MoveNext();
+    console.log(`> Person: ${name} from ${town} phone: ${phone} zip: ${zip} `);
+    rs.MoveNext();
   }
 } finally {
   con.Close();
 }
+      

@@ -5,12 +5,20 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node mdb.js"
+    "dev-js": "node mdb.js",
+    "dev-ts": "ts-node mdb.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ts-node": "^9.1.1",
     "winax": "^3.1.4"
+  },
+  "devDependencies": {
+    "@types/activex-adodb": "^6.1.7",
+    "@types/activex-adox": "^6.0.4",
+    "@types/node": "^15.3.0",
+    "typescript": "^4.2.4"
   }
 }
