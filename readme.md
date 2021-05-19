@@ -2,7 +2,7 @@
 
 ## 目的
 
-* 10年ぶりにWSHを利用したところ、ふとTypescriptでActiveX使えたら幸せではないか？と思い付き調査を開始
+* 10年ぶりにWSHを利用したところ、ふとTypescriptでActiveX使えたら幸せではないか？と思い付き調査
   * node.jsからActiveXを利用するライブラリがあるのではないか？
   * ライブラリがあるなら、TypeScriptでも使えるのではないか？
   * Typescriptが使えるのであれば、ADOの型定義を誰か作っているのではないか？
@@ -11,7 +11,7 @@
 
 nodeでActiveXオブジェクトを生成し、型指定することは可能でした。
 
-* node.jsでActiveXを利用するため「[winax](https://www.npmjs.com/package/winax)」を利用する
+* node.jsでActiveXを利用するためには「[winax](https://www.npmjs.com/package/winax)」を使う
 * TypeScript用の型定義もnpmに用意されている
   * @types/activex-adodb
   * @types/activex-adox
